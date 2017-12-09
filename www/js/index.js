@@ -87,6 +87,10 @@ function displayJSON (data) {
   document.dispatchEvent(evt);
 }
 
+$(function() {
+    $( "#popup-outside-page" ).enhanceWithin().popup();
+});
+
 
 }
 
