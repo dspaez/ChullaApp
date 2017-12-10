@@ -6,8 +6,10 @@
     <meta charset="utf-8">
     <title>Chulla App</title>
 
+    
     <link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.5.css">
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    
 
     <script src="jquery/jquery-1.11.1.min.js"></script>
     <script src="jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
@@ -19,14 +21,14 @@
 </head>
 <body>
 
-    <a href="#popupMenu" data-rel="popup" data-transition="flip" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Inicio</a>
+    <a href="#popupMenu" data-rel="popup" data-transition="flip" data-position-to="window" id="boton" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Inicio</a>
 
 
     <div data-role="popup" id="popupMenu" data-theme="a" class="ui-corner-all">
         <form>
             <div data-role="controlgroup">
                 <a id="openCamera" href="pag1.html" data-role="button">Tomar Foto</a>
-                <a href="pag1.html" data-role="button">Seleccionar Archivo</a>
+                <a id="chooseFile" href="pag1.html" data-role="button" onclick="chooseFile()">Seleccionar Archivo</a>
             </div>
         </form>
 
