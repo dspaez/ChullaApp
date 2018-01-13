@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Nearby</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="css/pag3.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGDJI8eFDi3hvsasPHoGrk2aAaTQdNlNk&callback=initMap"> </script>
+    <script src="jquery/jquery-1.11.1.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index2.js"> </script>
+    
+  </head>
+   <body id="body" style="background-color: transparent">  
+    <div id="arView" style="background-color: transparent">
+        <div class="arMessage">&uarr;<br>Incline hacia abajo para ver todos los lugares</div>
+        <br>
+        <div class="arMessage">&larr; Mueva el dispositivo para encontrar los puntos de interes &rarr;</div>
+        <br>
+        <div id="direction"></div>
+        <br>
+        <div id="spot"></div>
+       
+    </div>
+    <div id="topView" style="background-color: white">
+        <div class="navbar">
+            <div id="viewbtn" class="navbtn" onclick="toggleView()">Map</div>    
+            <div class="navtitle">Nearby</div> 
+        </div>
+        <div class="listView">
+            <div class="listItems"></div>
+        </div>
+        <div class="mapView">
+            <div id="map"></div>
+        </div>
+    </div>
+    <div id="debug">  
+        <div class="heading">Geolocation</div>
+        <div id="geolocation"></div>
+        <div class="heading">Compass</div>
+        <div id="compass"></div>
+        <div class="heading">Accelerometer</div>
+        <div id="accelerometer"></div>
+        <div class="heading">Log</div>
+        <div id="log"></div>
+    </div>      
+  </body>
+</html>

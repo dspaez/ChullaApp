@@ -1,0 +1,69 @@
+/*#contenedorImagen{
+	background: url(../img/Fondo2.png);
+
+
+}
+
+#imagenAntigua {
+	width:45%px; 
+	background:#FFCC00; 
+	float:left;
+}
+
+#imagenReal{
+	width:45%px; 
+	background:#FFCC00; 
+	float:right;
+}*/
+
+/*.contenedorImagenes{
+	position: relative;
+	background-color: white;
+	width: 100%;
+	padding:3px;
+}*/
+
+/*.contenedorImagen1{
+	background-color: red;
+	float:left;
+	width: 50%;
+	height: 200px;
+}
+
+#outputImg{
+	width: 100%;
+	height: 100%;
+	min-width: 0%;
+	min-height: 0%;
+	max-width: 100%;
+	max-height: 100%;
+
+	position: relative;
+}
+
+
+.contenedorImagen2{
+	background-color: yellow;
+	float:right;
+	width: 50%;
+	height: 200px;
+}
+*/
+
+.outputImg {
+border-radius: 45% / 20%; /* Borde redondeado */
+box-shadow: 0px 0px 15px #000; /* Sombra */
+padding:0;
+-moz-transition: all 1s;
+-webkit-transition: all 1s;
+-o-transition: all 1s;
+}
+.outputImg:hover {
+border-radius: 0; /* Con esto eliminamos el borde redondeado */
+-moz-transition: all 1s;
+-webkit-transition: all 1s;
+-o-transition: all 1s;
+cursor:pointer;
+}
+
+

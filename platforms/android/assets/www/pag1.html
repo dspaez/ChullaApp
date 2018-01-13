@@ -1,16 +1,100 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 
 <head>
-	 <meta charset="utf-8">
-    <title>Chulla App</title>
+
+    <meta charset="utf-8">
+
+    <title>ARtourQuito</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Risque" rel="stylesheet">
+    
+    <link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.5.css">
+
+    <link rel="stylesheet" href="css/pag1.css" type="text/css">
+
+    <link href="textillate/animate.css" rel="stylesheet">
+    <!--  Referencia a la libreria de estilos textillate que es la que permite animar texto--> 
+
+
+    
+
+    <script src="jquery/jquery-1.11.1.min.js"></script>
+
+    <script src="jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script type="text/javascript" src="js/datos.js"></script>  
+
+    <script src="textillate/jquery.lettering.js"></script>
+    <script src="textillate/jquery.textillate.js"></script>
+    <!--  Referencia de la libreria textillate -->
+
+    
+    <script src="js/otrasFunciones.js"></script>
+    <!--  Referencia de nuestro script--> 
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script> 
 
 </head>
-
 <body>
 
-	<img id = "outputImg" width="50%" height="50%" src="" >
-    <h1 id="results"></h1>
+    <div id="contenedorLogo">
+
+        <img id="logoSinFondo" src="img/logoSinFondo.png"/>  
+
+    </div>
+
+
+    <div class="textoLogo" data-in-effect="flash">
+        <p>Bienvenidos </p>
+    </div>
+
+        <div class="textoLogo1" >
+        <p>ARound Quito</p>
+    </div>
+
+    
+    <div id="contenedorBtnInicio">
+
+        <a id="btnInicio" href="#popupMenu" data-rel="popup" data-transition="flip" data-position-to="window" id="boton" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-camera">Inicio</a>
+
+    </div>
+
+    <div data-role="popup" id="popupMenu" data-theme="a" class="ui-corner-all">
+        <form>
+            <div data-role="controlgroup">
+
+                <a id="openCamera" href="pag2.html" data-role="button" onclick="cameraTakePicture()">Tomar Foto
+
+                <a id="chooseFile" href="pag2.html" data-role="button" onclick="chooseFile()">Seleccionar Archivo</a>
+
+            </div>
+        </form>
+
+    </div>
+
+
+
+    <div id="contenedorBtnInfo">
+
+     <a id="btnInfo" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-info">Info</a>
+
+      </div>
+
+      <div id="contenedorBtnRA">
+        <a id="btnRA" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-icon-left" onclick="location='pag3.html'">RA</a>
+    </div>
+
+    <div data-role="footer" id="piePagina"> 
+        <h4>Desarrollado por GalesoftEC</h4> 
+    </div> 
 
 </body>
 

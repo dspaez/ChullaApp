@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="css/pag1.css" type="text/css">
 
+    <link href="textillate/animate.css" rel="stylesheet">
+    <!--  Referencia a la libreria de estilos textillate que es la que permite animar texto--> 
+
 
     
 
@@ -35,7 +38,9 @@
 
     
     <script src="js/otrasFunciones.js"></script>
-    <!--  Referencia de nuestro script-->  
+    <!--  Referencia de nuestro script--> 
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script> 
 
 </head>
 <body>
@@ -47,11 +52,12 @@
     </div>
 
 
-    <div class="textoLogo" >
+    <div class="textoLogo" data-in-effect="flash">
         <p>Bienvenidos </p>
     </div>
+
         <div class="textoLogo1" >
-        <p>ARtour Ecuador</p>
+        <p>ARound Quito</p>
     </div>
 
     
@@ -65,7 +71,7 @@
         <form>
             <div data-role="controlgroup">
 
-                <a id="openCamera" href="pag2.html" data-role="button" onclick="cameraTakePicture()">Tomar Foto</a>
+                <a id="openCamera" href="pag2.html" data-role="button" onclick="cameraTakePicture()">Tomar Foto
 
                 <a id="chooseFile" href="pag2.html" data-role="button" onclick="chooseFile()">Seleccionar Archivo</a>
 
@@ -81,6 +87,10 @@
      <a id="btnInfo" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-info">Info</a>
 
       </div>
+
+      <div id="contenedorBtnRA">
+        <a id="btnRA" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-icon-left" onclick="location='pag3.html'">RA</a>
+    </div>
 
     <div data-role="footer" id="piePagina"> 
         <h4>Desarrollado por GalesoftEC</h4> 

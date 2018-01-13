@@ -95,10 +95,24 @@ function sendFileCloudVision (content) {
 
 function displayJSON (data) {
   var resultado = monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["texto"];
+  var ruta= monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["imagen"];
+
+  var image2 = document.getElementById('outputImg2');
+  image2.src = ruta;
+  
+  
+
   $('#results').text(resultado);
+
+
   var evt = new Event('results-displayed');
+ 
+  
   evt.results = resultado;
+
+
   document.dispatchEvent(evt);
+
 }
 
 

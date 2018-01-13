@@ -1,39 +1,51 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
 
-    <meta charset="utf-8">
-    <title>Chulla App</title>
+	<meta charset="UTF-8" HTTP-EQUIV="REFRESH" CONTENT="4;URL=pag1.html">  <!--  Permite que cambie de pagina automaticamente despues de 4 segundos -->
 
-    
-    <link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.5.css">
-    <link rel="stylesheet" href="css/index.css" type="text/css">
-    
 
-    <script src="jquery/jquery-1.11.1.min.js"></script>
-    <script src="jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/datos.js"></script>    
+	<title>ArtourQuito</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Risque" rel="stylesheet"> <!--  Referencia a la fuente de googlefonts -->
+
+	<link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.5.css">
+	<!--  Referencia la libreria de estilos de jquey-mobile-->
+
+	<link href="textillate/animate.css" rel="stylesheet">
+	<!--  Referencia a la libreria de estilos textillate que es la que permite animar texto--> 
+	
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+		<!--  Referencia a nuestra libreria de estilos -->
+
+	<script src="jquery/jquery-1.11.1.min.js"></script>
+	<script src="jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+	<!--  Referencia de la libreria de jquery y jquery-mobile -->
+
+	<script src="textillate/jquery.lettering.js"></script>
+	<script src="textillate/jquery.textillate.js"></script>
+	<!--  Referencia de la libreria textillate -->
+
+	
+	<script src="js/otrasFunciones.js"></script>
+	<!--  Referencia de nuestro script-->
 
 </head>
+
 <body>
 
-    <a href="#popupMenu" data-rel="popup" data-transition="flip" data-position-to="window" id="boton" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Inicio</a>
+	<div id="contenedorLogo">
+		<img id="logo" src="img/logoSinFondo.png"/>		
+	</div> <!--Div que contiene la imagen del logo-->
 
 
-    <div data-role="popup" id="popupMenu" data-theme="a" class="ui-corner-all">
-        <form>
-            <div data-role="controlgroup">
-                <a id="openCamera" href="pag1.html" data-role="button" onclick="cameraTakePicture()">Tomar Foto</a>
-                <a id="chooseFile" href="pag1.html" data-role="button" onclick="chooseFile()">Seleccionar Archivo</a>
-            </div>
-        </form>
+	<div class="textoLogo" data-in-effect="rotateIn" >
+		<p>ARound Quito</p>
+	</div> <!--Div que contiene el texto de logo-->
 
-    </div>
+	
 
+	
+	
 </body>
-
 </html>

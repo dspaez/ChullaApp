@@ -1,42 +1,59 @@
 var monumentosQuito = {
 
 	"/m/05m_f35" : {
-		coordenadas: [-0.220267,-78.512356], 
-		texto: "Palacio de Carondelet"
+		//coordenadas: [-0.220267,-78.512356], 
+		texto: "Palacio de Carondelet",
+		imagen: "../img/palaciodecarondelet.jpg",
+		latitud: -0.220267,
+		longitud: -78.512356
 	},
 
 	"/m/065_vzg" : {
 
-		coordenadas: [-0.185393,-78.493194], 
-		texto: "Iglesia La Merced"
+		//coordenadas: [-0.185393,-78.493194], 
+		texto: "Iglesia La Merced",
+		imagen: "../img/iglesiamerced.jpg",
+		latitud: -0.185393,
+		longitud: -78.493194
 
 	},
 
 	"/g/121y9tdx" : {
 
-		coordenadas: [-0.218964,-78.508698], 
-		texto: "Teatro Sucre"
+		//coordenadas: [-0.218964,-78.508698], 
+		texto: "Teatro Sucre",
+		imagen: "../img/teatrosucre.jpg",
+		latitud: -0.218964,
+		longitud: -78.508698
 
 	},
 
 	"/m/04yg38p" : {
 
-		coordenadas: [-0.220667,-78.51506], 
-		texto: "Iglesia San Francisco"
+		//coordenadas: [-0.220667,-78.51506], 
+		texto: "Iglesia San Francisco",
+		imagen: "../img/sanfrancisco.jpg",
+		latitud: -0.220667,
+		longitud: -78.51506
 
 	},
 
 	"/m/01dtq1" :  {
 
-		coordenadas: [-0.215145,-78.51285], 
-		texto: "Iglesia Santo Domingo"
+		//coordenadas: [-0.215145,-78.51285], 
+		texto: "Iglesia Santo Domingo",
+		imagen: "../img/iglesiasantodomingo.jpg",
+		latitud: -0.215145,
+		longitud: -78.51285
 
 	},
 
 	"/m/03nqwd0" :  {
 
-		coordenadas: [-0.223728,-78.507378], 
-		texto: "Iglesia La Basilica"
+		//coordenadas: [-0.223728,-78.507378], 
+		texto: "Basilica del Voto Nacional",
+		latitud:-0.223728,
+		longitud: -78.507378
 
 	},
 
@@ -44,8 +61,10 @@ var monumentosQuito = {
 
 	"/m/05s3kn" :  {
 
-		coordenadas: [-0.002162,-78.455417], 
-		texto: "Mitad Del Mundo"
+		//coordenadas: [-0.002162,-78.455417], 
+		texto: "Mitad Del Mundo",
+		latitud:-0.002162,
+		longitud: -78.455417
 
 	}
 }
