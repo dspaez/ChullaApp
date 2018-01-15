@@ -5,10 +5,7 @@
       },
 
 
-        // deviceready Event Handler
-        //
-        // The scope of 'this' is the event. In order to call the 'receivedEvent'
-        // function, we must explicitly call 'app.receivedEvent(...);'
+        //Este evento indica que las API del dispositivo de Cordova se han cargado y están listas para acceder
         onDeviceReady: function() {
 
          startCamera();
@@ -27,6 +24,7 @@
 
    app.initialize();
 
+   //Variable donde se almacenan los nombres, latitudes y longitudes de los monumentos a mostrar
    var pin = [
     {"name":"Iglesia de San Francisco", "lat":"-0.220371", "lng":"-78.515290"},
     {"name":"Basilica del Voto Nacional", "lat":"-0.214652", "lng":"-78.507109"},
@@ -53,10 +51,10 @@ var dataStatus = 0;
         });
 }  
 
-// setup google maps api        
+// Preparar el Google Maps API  
 function setupMap(){
     $("#map").height($(window).height()-60);
-    var mapOptions = {
+    var mapOptions = { //Habilitar o desabilitar controles al mapa      
         zoom: 13,
         mapTypeControl: false,
         streetViewControl: false,
@@ -65,9 +63,11 @@ function setupMap(){
         navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map = new google.maps.Map(document.getElementById("map"), mapOptions); //define una variable (llamada map) y la asigna a un nuevo objeto Map. La función Map() Crea un nuevo mapa dentro del contenedor HTML en cuestión (que normalmente es un elemento DIV) mediante la transferencia de parámetros (opcionales).
 }        
-// toggle between list view and map view        
+
+
+// alternar entre la vista de lista y la vista de mapa        
 function toggleView(){
     if($(".listView").is(":visible")){
         $(".listView").hide();

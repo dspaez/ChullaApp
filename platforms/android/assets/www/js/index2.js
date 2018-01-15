@@ -5,10 +5,7 @@
       },
 
 
-        // deviceready Event Handler
-        //
-        // The scope of 'this' is the event. In order to call the 'receivedEvent'
-        // function, we must explicitly call 'app.receivedEvent(...);'
+        //Este evento indica que las API del dispositivo de Cordova se han cargado y están listas para acceder
         onDeviceReady: function() {
 
          startCamera();
@@ -27,6 +24,7 @@
 
    app.initialize();
 
+   //Variable donde se almacenan los nombres, latitudes y longitudes de los monumentos a mostrar
    var pin = [
     {"name":"Iglesia de San Francisco", "lat":"-0.220371", "lng":"-78.515290"},
     {"name":"Basilica del Voto Nacional", "lat":"-0.214652", "lng":"-78.507109"},
@@ -58,7 +56,7 @@ function setupMap(){
     $("#map").height($(window).height()-60);
     var mapOptions = {
         zoom: 13,
-        mapTypeControl: false,
+        mapTypeControl: true,
         streetViewControl: false,
         navigationControl: true,
         scrollwheel: false,

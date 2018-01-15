@@ -63,12 +63,13 @@ body {
 }
 
 #contenedorBtnInfo {	
-	text-align: center;	 
+	text-align: center;
+	height:200px;  
 }
 
 #contenedorBtnRA{	
 	text-align: center;	
-	height:225px; 
+	
 }
 
 
@@ -120,8 +121,6 @@ body {
 
 	line-height: 20px;
 	height:20px;
-		
- 
 }
 
 #btnRA:hover {

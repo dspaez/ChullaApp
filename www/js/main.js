@@ -41,6 +41,7 @@ $(window).load(function(){
     sendFileCloudVision(content.replace('data:image/jpeg;base64,', ''));
   }
 
+//Envía los contenidos del archivo dado a la API de Cloud Vision y genera el resultado.
   function sendFileCloudVision (content) {
    request = {
     requests: [{

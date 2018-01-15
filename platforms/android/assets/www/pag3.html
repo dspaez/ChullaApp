@@ -1,18 +1,25 @@
 <!doctype html>
 <html>
   <head>
-    <title>Nearby</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" type="text/css" href="css/pag3.css">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGDJI8eFDi3hvsasPHoGrk2aAaTQdNlNk&callback=initMap"> </script>
-    <script src="jquery/jquery-1.11.1.min.js"></script>
+
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,width=device-width, height=device-height, target-densitydpi=device-dpi">
+    <meta charset="utf-8">
+
+    <title>ARtourQuito</title>
+
+    <link rel="stylesheet" type="text/css" href="css/pag3.css"> <!--  Referencia a nuestra pagina de estilos -->
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGDJI8eFDi3hvsasPHoGrk2aAaTQdNlNk&callback=initMap"> </script> <!--  Referencia al dcript para el Uso de Google Maps-->
+
+    <script src="jquery/jquery-1.11.1.min.js"> </script> <!--  Referencia de la libreria de jquery --> 
+
     <script src="cordova.js"></script>
-    <script src="js/index2.js"> </script>
+
+    <script src="js/index2.js"> </script> <!--  Referencia de al script para usar Realidad Aumentada-->
     
   </head>
-   <body id="body" style="background-color: transparent">  
+  <body id="body" style="background-color: transparent">  
+
     <div id="arView" style="background-color: transparent">
         <div class="arMessage">&uarr;<br>Incline hacia abajo para ver todos los lugares</div>
         <br>
@@ -21,12 +28,13 @@
         <div id="direction"></div>
         <br>
         <div id="spot"></div>
-       
     </div>
+    <!--Div que contiene las instrucciones para visualizar los diferentes etiquetas a los monumentos-->
+
+    
     <div id="topView" style="background-color: white">
         <div class="navbar">
-            <div id="viewbtn" class="navbtn" onclick="toggleView()">Map</div>    
-            <div class="navtitle">Nearby</div> 
+            <div id="viewbtn" class="navbtn" onclick="toggleView()">Visualizar Mapa</div>    
         </div>
         <div class="listView">
             <div class="listItems"></div>
@@ -35,6 +43,9 @@
             <div id="map"></div>
         </div>
     </div>
+    <!--Div que enlista los diferentes monumentos y la pestaña que me habilitara el Mapa-->
+
+
     <div id="debug">  
         <div class="heading">Geolocation</div>
         <div id="geolocation"></div>
@@ -44,6 +55,7 @@
         <div id="accelerometer"></div>
         <div class="heading">Log</div>
         <div id="log"></div>
-    </div>      
+    </div>
+
   </body>
 </html>
