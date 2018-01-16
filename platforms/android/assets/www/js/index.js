@@ -96,7 +96,7 @@ var app = {
     image2.src = ruta;
     $('#results').text(resultado);
     var evt = new Event('results-displayed');
-    evt.results = resultado;
+    evt.result7s = resultado;
     document.dispatchEvent(evt);
   }
 

@@ -3,14 +3,14 @@ var monumentosQuito = {
 
 	"/m/05m_f35" : {
 		texto: "Palacio de Carondelet",
-		imagen: "../img/palaciodecarondelet.jpg",
+		imagen: "img/palaciodecarondelet.jpg",
 		latitud: -0.220267,
 		longitud: -78.512356
 	},
 
 	"/m/065_vzg" : {
 		texto: "Iglesia La Merced",
-		imagen: "../img/iglesiamerced.jpg",
+		imagen: "img/iglesiamerced.jpg",
 		latitud: -0.185393,
 		longitud: -78.493194
 
@@ -18,7 +18,7 @@ var monumentosQuito = {
 
 	"/g/121y9tdx" : {
 		texto: "Teatro Sucre",
-		imagen: "../img/teatrosucre.jpg",
+		imagen: "img/teatrosucre.jpg",
 		latitud: -0.218964,
 		longitud: -78.508698
 
@@ -26,14 +26,14 @@ var monumentosQuito = {
 
 	"/m/04yg38p" : {
 		texto: "Iglesia San Francisco",
-		imagen: "../img/sanfrancisco.jpg",
+		imagen: "img/sanfrancisco.jpg",
 		latitud: -0.220667,
 		longitud: -78.51506
 	},
 
 	"/m/01dtq1" :  {
 		texto: "Iglesia Santo Domingo",
-		imagen: "../img/iglesiasantodomingo.jpg",
+		imagen: "img/iglesiasantodomingo.jpg",
 		latitud: -0.215145,
 		longitud: -78.51285
 

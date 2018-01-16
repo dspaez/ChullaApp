@@ -51,110 +51,132 @@ var dataStatus = 0;
         });
 }  
 
-// setup google maps api        
+// Preparar el Google Maps API  
 function setupMap(){
     $("#map").height($(window).height()-60);
-    var mapOptions = {
+    var mapOptions = { //Habilitar o desabilitar controles al mapa      
         zoom: 13,
-        mapTypeControl: true,
+        mapTypeControl: false,
         streetViewControl: false,
         navigationControl: true,
         scrollwheel: false,
         navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP //Defino el tipo de mapas a mostrar
     };
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map = new google.maps.Map(document.getElementById("map"), mapOptions); //define una variable (llamada map) y la asigna a un nuevo objeto Map. La función Map() Crea un nuevo mapa dentro del contenedor HTML en cuestión (que normalmente es un elemento DIV) mediante la transferencia de parámetros (opcionales).
 }        
-// toggle between list view and map view        
+
+
+// alternar entre la vista de lista y la vista de mapa        
 function toggleView(){
     if($(".listView").is(":visible")){
         $(".listView").hide();
         $("#map").height($(window).height()-60);
         $(".mapView").fadeIn(
             function(){
-                google.maps.event.trigger(map, "resize");
-                map.fitBounds(bounds);});
-        $("#viewbtn").html("List");
+                google.maps.event.trigger(map, "resize"); //activar este evento en el mapa cuando el div cambie de tamaño
+                map.fitBounds(bounds);}); //Establece la ventana gráfica para que contenga los límites dados.
+        $("#viewbtn").html("Lugares");
     } else {
         $(".mapView").hide();
         $(".listView").fadeIn();
-        $("#viewbtn").html("Map");
+        $("#viewbtn").html("Visualizar Mapa");
     }
 }
-// get data from API and store in array, add to list view and create markers on map, calculate         
+// Obtener datos de API y almacenar en una matriz, agregar a la vista de lista y crear marcadores en el mapa, calcular      
 function loadData(){
     dataStatus = "loading";
     markersArray = [];
     bounds = new google.maps.LatLngBounds();
-    // add blue gps marker
-    var icon = new google.maps.MarkerImage('http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png',new google.maps.Size(30, 28),new google.maps.Point(0,0),new google.maps.Point(9, 28));
-    var gpsMarker = new google.maps.Marker({position: new google.maps.LatLng(myLat, myLng), map: map, title: "My Position", icon:icon});
-    bounds.extend(new google.maps.LatLng(myLat, myLng));
-    markersArray.push(gpsMarker);
-    // add all location markers to map and list view and array
+    var latlong = new google.maps.LatLng(myLat, myLng); //Un LatLng es un punto en coordenadas geográficas: latitud y longitud.
+
+    // Agregar marcador gps azul
+    var icon = 'http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png'
+    var gpsMarker = new google.maps.Marker({position: latlong, map: map, title: "My Position", icon:icon}); //Agrega el marcador a mi posicion en el mapa
+    bounds.extend(latlong); //Extiende estos límites para contener el punto dado.
+    markersArray.push(gpsMarker);//Ingresa el marcador al Array de Marcadores
+
+    // Agregar todos los marcadores de ubicación para mapear y mostrar vista y matriz
     for(var i=0; i< pin.length; i++){
-        $(".listItems").append("<div class='item'>"+pin[i].name+"</div>");
-        addMarker(i);
-        relativePosition(i);
+        $(".listItems").append("<div class='item'>"+pin[i].name+"</div>"); //Agrega los Pin a la lista de items
+        addMarker(i); //Funcion AddMarker
+        relativePosition(i); //Funcion RelativePosition
     }
-    map.fitBounds(bounds);
-    google.maps.event.trigger(map, "resize");
+    map.fitBounds(bounds); //Establece la ventana gráfica para que contenga los límites dados.
+    google.maps.event.trigger(map, "resize"); //activar este evento en el mapa cuando el div cambie de tamaño
     dataStatus = "loaded";   
 }
-// add marker to map and in array        
+
+
+// Agregar marcador al mapa y al array de marcadores      
 function addMarker(i){
-    var marker = new google.maps.Marker({position: new google.maps.LatLng(pin[i].lat, pin[i].lng), map: map, title: pin[i].name});
-    bounds.extend(new google.maps.LatLng(pin[i].lat, pin[i].lng));
-    markersArray.push(marker);
+    var latlongpin = new google.maps.LatLng(pin[i].lat, pin[i].lng);
+    var marker = new google.maps.Marker({position: latlongpin, map: map, title: pin[i].name}); //Agrega el marcador a mi posicion en el mapa
+    bounds.extend(latlongpin); //Extiende estos límites para contener el punto dado.
+    markersArray.push(marker); //Ingresa el marcador al Array de Marcadores 
 } 
-// clear all markers from map and array        
+
+// Borrar todos los marcadores del mapa y del array       
 function clearMarkers() {
     while (markersArray.length) {
-        markersArray.pop().setMap(null);
+        markersArray.pop().setMap(null); //Quita los marcadores del array y los elimina del mapa
     }
 }        
-// calulate distance and bearing value for each of the points wrt gps lat/lng        
+// calculó la distancia para cada uno de los puntos  gps lat / lng  mediante la formula de Haversine     
 function relativePosition(i){
+    //Variables donde se almacena la Latitud y Longitud de los Lugares Turisticos
     var pinLat = pin[i].lat;
     var pinLng = pin[i].lng;
+
+    //Calcula la distacia y las convierte a Radianes
     var dLat = (myLat-pinLat)* Math.PI / 180;
     var dLon = (myLng-pinLng)* Math.PI / 180;
+
+    //Convierte a Radianes las coordenadas de los Pin
     var lat1 = pinLat * Math.PI / 180;
     var lat2 = myLat * Math.PI / 180;
+
     var y = Math.sin(dLon) * Math.cos(lat2);
     var x = Math.cos(lat1)*Math.sin(lat2) - Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
+
     bearing = Math.atan2(y, x) * 180 / Math.PI;
     bearing = bearing + 180;
     pin[i]['bearing'] = bearing;
     
+    //Mediante la formula de Haversine se calculan la distancia entre dos puntos geograficos
     var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     distance = 3958.76  * c;
-    distance = distance * 1.60934;
+    distance = distance * 1.60934; //el resultado arrojado en millas se le multiplica por 1.60934 para que sea kilometros
     pin[i]['distance'] = distance;
 }
-// calculate direction of points and display        
+
+// Calcula direccion de puntos y los muestray        
 function calculateDirection(degree){
     var detected = 0;
+
+    //Variable del html donde se mostraran los pin
     $("#spot").html("");
+
+    //Realiza un recorrido por los pin (lugares)ingresados
     for(var i=0;i<pin.length;i++){
         if(Math.abs(pin[i].bearing - degree) <= 20){
-            var away, fontSize, fontColor;
-            // varry font size based on distance from gps location
-            if(pin[i].distance>1500){
-                away = Math.round(pin[i].distance);
-                fontSize = "16";
-                fontColor = "#ccc";
-            } else if(pin[i].distance>500){
-                away = Math.round(pin[i].distance);
+
+            var away = pin[i].distance.toFixed(2); //Redondea a 2 decimales
+            var fontSize, fontColor;
+            
+            // tamaño de letra basado en la distancia desde la ubicación gps
+            if(pin[i].distance>10){ //Distancia mayor a 10km
                 fontSize = "24";
-                fontColor = "#ddd";
+                fontColor = "#fff";
+            } else if(pin[i].distance>1){ //Distancia mayor a 1km
+                fontSize = "16";
+                fontColor = "#aaa";
             } else {
-                away = pin[i].distance.toFixed(2);
                 fontSize = "30";
                 fontColor = "#eee";
             }
-            $("#spot").append('<div class="name" data-id="'+i+'" style="margin-left:'+(((pin[i].bearing - degree) * 5)+50)+'px;width:'+($(window).width()-100)+'px;font-size:'+fontSize+'px;color:'+fontColor+'">'+pin[i].name+'<div class="distance"> a  ' +  away + ' Km de distancia</div></div>');
+            $("#spot").append('<div class="name" data-id="'+i+'" style="margin-left:'+(((pin[i].bearing - degree) * 5)+50)+'px;width:'+($(window).width()-100)+'px;font-size:'+fontSize+'px;color:'+fontColor+'">'+pin[i].name+'<div class="distance"> a  ' +  away + ' Km de distancia</div></div>'); //Que se me mostrara en la etiqueta dependiendo de la distancia
             detected = 1;
         } else {
             if(!detected){
@@ -165,13 +187,13 @@ function calculateDirection(degree){
     
 } 
         
-// Start watching the geolocation        
+// Comienza a mirar la geolocalización       
 function startGeolocation(){
-    var options = { timeout: 30000 };
+    var options = { timeout: 30000 }; //Lanzar un error si no se recibe una actualización cada 30 segundos
     watchGeoID = navigator.geolocation.watchPosition(onGeoSuccess, onGeoError, options);
 }
         
-// Stop watching the geolocation
+// Deja de mirar la geolocalización
 function stopGeolocation() {
     if (watchGeoID) {
         navigator.geolocation.clearWatch(watchGeoID);
@@ -179,7 +201,7 @@ function stopGeolocation() {
     }
 }
         
-// onSuccess: Get the current location
+// onSuccess: obtiene la ubicación actual
 function onGeoSuccess(position) {
     document.getElementById('geolocation').innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' + 'Longitude: ' + position.coords.longitude;
     myLat = position.coords.latitude;
@@ -188,70 +210,84 @@ function onGeoSuccess(position) {
         loadData();
     }
 }
-// onError: Failed to get the location
+// onError: Error al obtener la ubicación
 function onGeoError() {
-    document.getElementById('log').innerHTML += "onError=.";
+     var band = false;
+     if(!band){
+        confirm('No Tiene Activada la Geocolalizacion o no Existe!');
+        band = true;
+    }
 } 
     
-// Start watching the compass
+// Comienza a mirar la brújula
 function startCompass() {
-    var options = { frequency: 100 };
+    var options = { frequency: 100 }; //Con qué frecuencia recuperar el título de la brújula en milisegundos. 
     watchCompassID = navigator.compass.watchHeading(onCompassSuccess, onCompassError, options);
 }
-// Stop watching the compass
+// Deja de mirar la brújula
 function stopCompass() {
     if (watchCompassID) {
         navigator.compass.clearWatch(watchCompassID);
         watchCompassID = null;
     }
 }
-// onSuccess: Get the current heading
+// onSuccess: Obtiene el titulo actual
 function onCompassSuccess(heading) {
     var directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
-    var direction = directions[Math.abs(parseInt((heading.magneticHeading) / 45) + 1)];
-    document.getElementById('compass').innerHTML = heading.magneticHeading + "<br>" + direction;
-    document.getElementById('direction').innerHTML = direction;
-    var degree = heading.magneticHeading;
-    if($("#arView").is(":visible") && dataStatus != "loading"){
-        calculateDirection(degree);
+    var direction = directions[Math.abs(parseInt((heading.magneticHeading) / 45) + 1)]; //almace correspondiente deacuerdo a losgrados de 0-359.99 en un solo momento en el tiempo 
+    document.getElementById('compass').innerHTML = heading.magneticHeading + "<br>" + direction; //Cambia el nombre correspondiente en la etiqueta HTML
+    document.getElementById('direction').innerHTML = direction;//Cambia la direccion 
+    
+    var degree = heading.magneticHeading; //El título en grados de 0-359.99 en un solo momento en el tiempo
+    if($("#arView").is(":visible") && dataStatus != "loading"){//Si la RA estav visible
+        calculateDirection(degree); //Calcula la direccion a donde se encuentra apuntando la brujula
     }
 }
-// onError: Failed to get the heading
-function onCompassError(compassError) {
-    document.getElementById('log').innerHTML += "onError=."+compassError.code;
+// onError: Error al obtener el heading
+function onCompassError() {
+    var band = false;
+     if(!band){
+        confirm('No Tiene Activada la Brujula o no Existe');
+        band = true;
+    }
 }        
         
-// Start checking the accelerometer
+// Comienza a verificar el acelerómetror
 function startAccelerometer() {
-    var options = { frequency: 100 };
-    watchAccelerometerID = navigator.accelerometer.watchAcceleration(onAccelerometerSuccess, onAccelerometerError, options);
+    var options = { frequency: 100 }; //Actualiza la aceleración cada 0.1 segundos
+    watchAccelerometerID = navigator.accelerometer.watchAcceleration(onAccelerometerSuccess, onAccelerometerError, options);  //recupera la aceleración actual del dispositivo en un intervalo regular,
 }
-// Stop checking the accelerometer
+// Deja de revisar el acelerómetro
 function stopAccelerometer() {
     if (watchAccelerometerID) {
         navigator.accelerometer.clearWatch(watchAccelerometerID);
         watchAccelerometerID = null;
     }
 }
-// onSuccess: Get current accelerometer values
+// onSuccess: Obtiene los valores actuales del acelerómetro
 function onAccelerometerSuccess(acceleration) {
-    // for debug purpose to print out accelerometer values
+    // para fines de depuración para imprimir los valores del acelerometro
     var element = document.getElementById('accelerometer');
     element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
                         'Acceleration Y: ' + acceleration.y + '<br />' +
                         'Acceleration Z: ' + acceleration.z ;
-    if(acceleration.y > 7){
-        $("#arView").fadeIn();
-        $("#topView").hide();
-        // document.getElementById('body').style.background = "#d22";
+
+    if(acceleration.y > 7){ //Si el acelerometro en y es mayor a 7
+        $("#arView").fadeIn();//Muestra la vista de RA
+        $("#topView").hide();//Oculta la vista de elementos 
+
         document.getElementById('body').style.background = "transparent";
     } else {
-        $("#arView").hide();
-        $("#topView").fadeIn();
-        document.getElementById('body').style.background = "#fff";
+        $("#arView").hide(); //Oculta la RA
+        $("#topView").fadeIn(); //Muestra la vista de elementos
+        document.getElementById('body').style.background = "#0d4d59";
     }
 }
-// onError: Failed to get the acceleration
+// onError: Error al obtener la aceleración
 function onAccelerometerError() {
-    document.getElementById('log').innerHTML += "onError.";
+    var band = false;
+     if(!band){
+        confirm('No Tiene Activada El Acelerometro o no Existe');
+        band = true;
+    }
 }
