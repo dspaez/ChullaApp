@@ -39,6 +39,7 @@ var markersArray = [], bounds;
 var myLat = 0, myLng = 0; 
 var bearing, distance;
 var dataStatus = 0; 
+var cont = 0;
 
 
    function startCamera() {
@@ -211,11 +212,12 @@ function onGeoSuccess(position) {
     }
 }
 // onError: Error al obtener la ubicación
-function onGeoError() {
-     var band = false;
-     if(!band){
-        confirm('No Tiene Activada la Geocolalizacion o no Existe!');
-        band = true;
+function onGeoError(error) {
+
+   if (cont == 0) {
+        alert('Su Dispositivo no tiene activada la Geolocalización o no existe ');
+        confirm('Esta función no trabajará correctamente');
+        cont ++
     }
 } 
     
@@ -244,12 +246,14 @@ function onCompassSuccess(heading) {
     }
 }
 // onError: Error al obtener el heading
-function onCompassError() {
-    var band = false;
-     if(!band){
-        confirm('No Tiene Activada la Brujula o no Existe');
-        band = true;
+function onCompassError(compassError) {
+    
+    if (cont == 0) {
+        alert('Su Dispositivo no tiene activada la Brújula o no existe ');
+        confirm('Esta función no funcionará correctamente');
+        cont ++
     }
+    
 }        
         
 // Comienza a verificar el acelerómetror
@@ -285,9 +289,9 @@ function onAccelerometerSuccess(acceleration) {
 }
 // onError: Error al obtener la aceleración
 function onAccelerometerError() {
-    var band = false;
-     if(!band){
-        confirm('No Tiene Activada El Acelerometro o no Existe');
-        band = true;
+   if (cont == 0) {
+        alert('Su Dispositivo no tiene activado el Acelerómetro o no existe ');
+        confirm('Esta función no funcionará correctamente');
+        cont ++
     }
 }

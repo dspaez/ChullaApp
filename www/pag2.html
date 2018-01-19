@@ -2,46 +2,59 @@
 <html>
 
 <head>
-
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,width=device-width, height=device-height, target-densitydpi=device-dpi">
-    <meta charset="utf-8">
-    
+    <meta charset="utf-8">    
 
     <title>ARtourQuito</title>
 
     <link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.5.css">
-
- 
-
-
+    <link rel="stylesheet"  href="css/pag1.css" type="text/css">
     <script src="jquery/jquery-1.11.1.min.js"></script>
-
-    <script type="text/javascript" src="js/corner.js"></script>
-    <!--  Quitar -->  
-
     <script src="jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
-
-     <script type="text/javascript" src="js/index.js"></script>
-
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/datos.js"></script>
+    
 
-</head>
-
-<body>
-
-	<!-- <img id = "outputImg" src="" >
-    <h1 id="results"></h1> -->
 
     
-    	<img id="outputImg" src="" class="corner iradius100 ishadow33" alt="" width="100%" /> 
-    	
-    	<br>
+</head>
 
-    	<img id="outputImg2" src="img/Fondo1.png" class="corner iradius100 ishadow33" alt="" width="100%" />
+<body>  
+<!-- Pagina de presentacion de resultados -->
+    <!--Etiqueta para presentar el nombre del lugar o monumento reconocido-->
+    <div class="navbar" id="divNombre">
+        <div id="nombre"></div><br>    
+    </div><br><br><br>
+    <!--Canvas para la presentacion de la imagen capturada por el usuario o 
+        subida desde el archivo local del dispositivo--> 
+    <div id="canvas">
+        <canvas id="myCanvas" >
+        <img id="outputImg" src="" class="corner iradius100 ishadow33" alt="" width="100%" height="100%" /><br>
+        <img id="marcador" src="img/mark.png">
+        </canvas>    
+    </div>
+    <!--Etiqueta donde se presenta la imagen antigua del lugar o monumento reconocido-->
+    <img id="outputImg2" src="" align="center" alt="" width="100%" height="100%" />
+    <!--Etiqueta que despliega la informacion acerca del lugar o monumento reconocido-->
+    <div class="texto" id="divDescripcion" align="justify">
+        <p id="descripcion"></p>            
+    </div>
 
-    	<h1 id="results"></h1>
+    <!--Funcion para controlar las dimensiones del elemento canvas-->
+    <script type="text/javascript">
+        function completeScreen(){
+           var c = document.getElementById("myCanvas");
+           c.style.width = window.innerWidth + "px";
+             //c.style.height = window.innerHeight + "px";
+             var ctx = c.getContext("2d");
+             var img = document.getElementById("outputImg");
+             //ctx.drawImage(img,0,0);
+         }
+         completeScreen();
 
-    	
+     </script>
+        
 
 </body>
 

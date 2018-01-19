@@ -5,44 +5,48 @@ var monumentosQuito = {
 		texto: "Palacio de Carondelet",
 		imagen: "img/palaciodecarondelet.jpg",
 		latitud: -0.220267,
-		longitud: -78.512356
+		longitud: -78.512356,
+		descripcion: "o"
 	},
 
 	"/m/065_vzg" : {
 		texto: "Iglesia La Merced",
 		imagen: "img/iglesiamerced.jpg",
 		latitud: -0.185393,
-		longitud: -78.493194
-
+		longitud: -78.493194,
+		descripcion: "a"
 	},
 
 	"/g/121y9tdx" : {
-		texto: "Teatro Sucre",
+		texto: "Teatro Nacional Sucre",
 		imagen: "img/teatrosucre.jpg",
 		latitud: -0.218964,
-		longitud: -78.508698
-
+		longitud: -78.508698,
+		descripcion: "Aqui deberia ir todo el texto con la descripcionmacion disponible acerca del monumento detectad,Aqui deberia ir todo el texto con la descripcionmacion disponible acerca del monumento detectad"
 	},
 
 	"/m/04yg38p" : {
 		texto: "Iglesia San Francisco",
 		imagen: "img/sanfrancisco.jpg",
 		latitud: -0.220667,
-		longitud: -78.51506
+		longitud: -78.51506,
+		descripcion: "a"
 	},
 
 	"/m/01dtq1" :  {
 		texto: "Iglesia Santo Domingo",
 		imagen: "img/iglesiasantodomingo.jpg",
 		latitud: -0.215145,
-		longitud: -78.51285
-
+		longitud: -78.51285,
+		descripcion: "a"
 	},
 
 	"/m/03nqwd0" :  { 
-		texto: "Basilica del Voto Nacional",
+		texto: "Basílica del Voto Nacional",
+		imagen: "img/basilica.jpg",
 		latitud:-0.223728,
-		longitud: -78.507378
+		longitud: -78.507378,
+		descripcion: "a"
 
 	},
 
@@ -50,8 +54,8 @@ var monumentosQuito = {
 	"/m/05s3kn" :  {
 		texto: "Mitad Del Mundo",
 		latitud:-0.002162,
-		longitud: -78.455417
-
+		longitud: -78.455417,
+		descripcion: "a"
 	}
 }
 

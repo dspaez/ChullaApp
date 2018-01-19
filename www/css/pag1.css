@@ -164,3 +164,67 @@ body {
     color: #F9FFF6;
 }
 
+
+/*comienza estilos pag2.html*/
+
+
+#divNombre{
+	color: #105561;
+	text-shadow: 2px 2px 2px #97cdd7;
+	text-align: center;
+}
+#divDescripcion{
+	color: white;
+	text-shadow: 5px 5px 5px #000000;
+	
+}
+
+#descripcion{
+	border: white 2px solid;
+	border-radius: 10px;
+	box-shadow: 6px 6px 6px black;
+	margin: 5px;
+	padding: 5px;
+}
+
+.navbar {
+	background-color:white;
+	height:40px;padding:10px;
+	text-align:center;
+	color:#fff;
+	font-size:20px;
+	font-weight:bold;
+	line-height:40px;
+	position: fixed;
+	width: 100%
+}
+
+/*#outputImg{
+	display: block;
+	border-radius: 20px;
+	box-shadow: 6px 6px 6px black;
+
+}*/
+#outputImg2{	
+	display: block;
+	border: white 2px solid;
+	border-radius: 20px;
+	box-shadow: 6px 6px 6px black;
+}
+/*#myCanvas{
+	display: block;
+	margin: 30px, 0px,5px,0px;
+	border-radius: 20px
+	box-shadow: 6px 6px 6px black;
+}*/
+
+#canvas{
+	border: white 2px solid;
+	border-radius: 10px;
+	box-shadow: 6px 6px 6px black;
+	margin-bottom: 4px;
+	margin-top: 4px; 
+	
+
+}
+

@@ -15,7 +15,19 @@ var app = {
   app.initialize();
 
 
+  confirm("Por Favor Active su Internet o Datos para que la aplicación funcione correctamente");
+
+
   var request = {};
+
+  //Puntos de ubicacion para el marcador en la fotografia
+    var x1 = 0;
+    var y1 = 0;
+    var x2 = 0;
+    var y2 = 0;
+    var y3 = 0;
+    
+    
 
   //Funcion la cual me habilita la camara del dispositivo para tomar una fotografia
   function cameraTakePicture() {
@@ -35,8 +47,8 @@ var app = {
     }
 
     //Función de devolución de llamada que proporciona un mensaje de error.
-    function onFail(message) {
-      alert('Failed because: ' + message);
+    function onFail() {
+      alert('Imagen No Cargada Correctamente');
     }
   }
 
@@ -70,7 +82,11 @@ var app = {
       type: 'POST', //Tipo de Peticion es POST
       data: JSON.stringify(request), //El metodo JSON.stringify() convierte un valor dado en javascript a una cadena  JSON.
       contentType: 'application/json'
-    }).success(displayJSON) 
+    }).success(function(data){
+      getData(data);
+      myCanvas(x1,y1);
+      displayJSON(data);
+    }) 
   }
 
   //Envía los contenidos del archivo dado a la API de Cloud Vision y genera el resultado.
@@ -91,14 +107,49 @@ var app = {
 //Muestra los resultados
   function displayJSON (data) {
     var resultado = monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["texto"];
-    var ruta= monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["imagen"];
-    var image2 = document.getElementById('outputImg2');
-    image2.src = ruta;
-    $('#results').text(resultado);
+    $('#nombre').text(resultado);
     var evt = new Event('results-displayed');
     evt.result7s = resultado;
     document.dispatchEvent(evt);
   }
+
+
+  //Funcion para asignar que elementos dibujar en el elemento canvas de pag2.html, 
+  //La funcion recibe dos parametros que son los puntos de ubicacion en donde se dibuja un marcado de ubicacion
+  function myCanvas (x1, y1){
+  var c = document.getElementById("myCanvas"); //captura el elemento con el id myCanvas
+  var ctx = c.getContext("2d");
+  var img = document.getElementById("outputImg"); //captura en un objeto el elemnto del id de la imagen a reconocer
+  ctx.drawImage(img,0,0);                         //dibuja la imagen almacenada de la etiqueta outputImg en la posicion 0,0
+  var img2 = document.getElementById("marcador"); //captura el elemento en donde se dibujara el marcador
+  ctx.drawImage(img2,x1,y1); //ubica el marcador dentro de la imagen de acuerdo a los puntos de referencia resultantes del reconocimiento
+}
+
+//Funcion para obtener los datos del diccionario almacenado en datos.js de acuerdo a la imagen a reconocer
+function getData(data){
+
+  //almacenamiento de los puntos de referencia resultantes del reconocimiento de la imagen para 
+  //posteriormente dibujar el marcador de ubicacion dentro de la imagen
+  x1 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[0].x;
+  y1 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[0].y;
+  x2 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[1].x;
+  y2 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[1].y;
+  y3 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[2].y;
+
+  x1 = (x1 + x2) / 2;
+  //y1 = (y1 + y3) / 2;
+
+  //Imagen antigua
+  var urlA = document.getElementById("outputImg2");
+  var ruta = monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["imagen"];
+  urlA.src = ruta;
+
+  //Texto de informacion
+  var descripcion = monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["descripcion"]
+  $("#descripcion").text(descripcion);
+
+}
+
 
 
 
