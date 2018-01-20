@@ -228,3 +228,21 @@ body {
 
 }
 
+#contenedorBtnVolver {  
+    text-align: right;
+}
+
+
+#btnVolver {  
+    background: transparent;
+    color: #F9FFF6;
+    font-size: large;
+    text-shadow: 5px 5px 5px #000000;
+        
+ 
+}
+
+#btnVolver:hover {
+    background-color: #F9FFF6;
+    color: #0d4c57;
+}

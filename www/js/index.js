@@ -15,9 +15,6 @@ var app = {
   app.initialize();
 
 
-  confirm("Por Favor Active su Internet o Datos para que la aplicación funcione correctamente");
-
-
   var request = {};
 
   //Puntos de ubicacion para el marcador en la fotografia
@@ -149,6 +146,22 @@ function getData(data){
   $("#descripcion").text(descripcion);
 
 }
+
+
+var carousel;
+$(document).ready(function () {
+
+    carousel = $("#frame ul");
+
+    carousel.itemslide({
+        one_item: true //Set this for proper full screen navigation
+    }); //initialize itemslide
+
+    $(window).resize(function () {
+        carousel.reload();
+
+    }); //Recalculate width and center positions and sizes when window is resized
+});
 
 
 

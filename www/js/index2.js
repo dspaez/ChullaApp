@@ -11,6 +11,7 @@
          startCamera();
 
          setupMap();
+         
          startAccelerometer();
          startCompass();
          startGeolocation();
