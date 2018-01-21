@@ -1,12 +1,6 @@
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-
-}
 
 #frame
 {
-        position:fixed;
         height:100vh;/*150vh*/
         width:100vw;
         overflow-x: hidden;
@@ -33,7 +27,6 @@ ul {
     position: absolute;
     left:0;
 
-    height:100vh;
 
 
     list-style-type: none;

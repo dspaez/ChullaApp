@@ -20,11 +20,11 @@ $(document).ready(function () {
     carousel = $("#frame ul");
 
     carousel.itemslide({
-        one_item: true //Set this for proper full screen navigation
+        one_item: true // Establece esto para una navegación adecuada a pantalla completa
     }); //initialize itemslide
 
     $(window).resize(function () {
         carousel.reload();
 
-    }); //Recalculate width and center positions and sizes when window is resized
+    }); // Recalcula el ancho y centre las posiciones y los tamaños cuando se cambia el tamaño de la ventana
 });
