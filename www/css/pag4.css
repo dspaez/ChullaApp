@@ -1,7 +1,23 @@
 
+body {
+    background-position:center center;
+    background-attachment:scroll;
+    background-size:100% 100%;
+}
+
+.ui-page {
+    background: transparent;
+}
+.ui-content{
+    background: transparent;
+}
+
+
+
 #frame
 {
-        height:100vh;/*150vh*/
+        position: absolute;
+        height:140vh;/*150vh*/
         width:100vw;
         overflow-x: hidden;
         overflow-y: hidden;
@@ -27,6 +43,7 @@ ul {
     position: absolute;
     left:0;
 
+    height:140vh;
 
 
     list-style-type: none;
