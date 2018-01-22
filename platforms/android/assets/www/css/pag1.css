@@ -224,8 +224,14 @@ body {
 	box-shadow: 6px 6px 6px black;
 	margin-bottom: 4px;
 	margin-top: 4px; 
-	
+}
 
+#outputImg{
+	visibility: hidden;
+}
+
+#marcador{
+	visibility: hidden;
 }
 
 #contenedorBtnVolver {  
@@ -246,3 +252,5 @@ body {
     background-color: #F9FFF6;
     color: #0d4c57;
 }
+
+
