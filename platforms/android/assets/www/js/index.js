@@ -15,9 +15,6 @@ var app = {
   app.initialize();
 
 
-  confirm("Por Favor Active su Internet o Datos para que la aplicación funcione correctamente");
-
-
   var request = {};
 
   //Puntos de ubicacion para el marcador en la fotografia
@@ -45,7 +42,8 @@ var app = {
       var image = document.getElementById('outputImg'); //Obtiene el Id HTML  
       image.src = "data:image/jpeg;base64," + imageData; //Muestra la Imagen en el ID obtenido
       var content = imageData;
-      sendFileCloudVision(content); //Llama a la funcion SendFileCloudVision y pasa como parametro la imagen en Base64 obtenida
+      sendFileCloudVision(content); 
+      //Llama a la funcion SendFileCloudVision y pasa como parametro la imagen en Base64 obtenida
       ajax(); //Llama a la funcion ajax
     }
 
@@ -55,12 +53,13 @@ var app = {
     }
   }
 
-  //Funcion la cual me habilita la camara del dispositivo para obtener una imagen del dispositivo
+  //Funcion la cual me permite acceder a la galeria de imagenes del dispositivo
   function chooseFile() {
     navigator.camera.getPicture(onSuccess, onFail, { 
       quality: 50,
       destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM //Establece la fuente de la imagen en este caso las fotografias encontradas en el dispositivo.
+      sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM 
+      //Establece la fuente de la imagen en este caso las fotografias encontradas en el dispositivo.
     });
 
     function onSuccess(imageData) {
@@ -72,23 +71,24 @@ var app = {
     }
 
     function onFail(message) {
-      alert('Failed because: ' + message);
+      alert('Imagen No Cargada Correctamente');
     }
   }
 
-  //Funcion Ajax que me pertice peticion POST al Servior
+  //Funcion Ajax que me realiza la peticion POST al Servidjor
   function ajax() {
     var API_KEY = "AIzaSyCGyZenFVHB3v9pmjLIc-7iSeT49kw4eKg"; 
     var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + API_KEY;
     $.ajax({
       url: CV_URL,//Hacia donde deseamos enviar la peticion
       type: 'POST', //Tipo de Peticion es POST
-      data: JSON.stringify(request), //El metodo JSON.stringify() convierte un valor dado en javascript a una cadena  JSON.
+      data: JSON.stringify(request), 
+      //El metodo JSON.stringify() convierte un valor dado en javascript a una cadena  JSON.
       contentType: 'application/json'
     }).success(function(data){
       getData(data);
       myCanvas(x1,y1);
-      displayJSON(data);
+      displayJSON(data); //Muestra los datos
     }) 
   }
 
