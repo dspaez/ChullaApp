@@ -85,10 +85,20 @@ var app = {
       data: JSON.stringify(request), 
       //El metodo JSON.stringify() convierte un valor dado en javascript a una cadena  JSON.
       contentType: 'application/json'
-    }).success(function(data){
-      getData(data);
+    })
+    .success(function(data){
+      var mid_vision = data.responses[0].landmarkAnnotations[0].mid;
+      $.ajax({
+          url: 'http://church.cs.us.es:8010/api/v1/monumentosquito/?mid__icontains='+ mid_vision + '&format=json' ,
+          type: 'GET',
+          accepts: 'application/json',
+          dataGet: 'json'
+        })
+      .success(function(dataGet){
+      getData(dataGet);
       myCanvas(x1,y1);
-      displayJSON(data); //Muestra los datos
+      displayJSON(dataGet); //Muestra los datos
+      })
     }) 
   }
 
@@ -108,8 +118,8 @@ var app = {
   }
 
 //Muestra los resultados
-  function displayJSON (data) {
-    var resultado = monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["texto"];
+  function displayJSON (dataGet) {
+    var resultado = dataGet.objects[0].nombre_monumento;
     $('#nombre').text(resultado);
     var evt = new Event('results-displayed');
     evt.result7s = resultado;
@@ -131,32 +141,35 @@ var app = {
 }
 
 //Funcion para obtener los datos del diccionario almacenado en datos.js de acuerdo a la imagen a reconocer
-function getData(data){
+function getData(dataGet){
 
   var wImg = document.getElementById("outputImg").width;
   var hImg = document.getElementById("outputImg").height;
 
   //almacenamiento de los puntos de referencia resultantes del reconocimiento de la imagen para 
   //posteriormente dibujar el marcador de ubicacion dentro de la imagen
-  x1 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[0].x;
-  y1 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[0].y;
-  x2 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[1].x;
-  y2 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[1].y;
-  y3 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[2].y;
+  //x1 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[0].x;
+  //y1 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[0].y;
+  //x2 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[1].x;
+  //y2 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[1].y;
+  //y3 = data.responses[0].landmarkAnnotations[0].boundingPoly.vertices[2].y;
 
-  x1 = (x1 + x2) / 2;
-  x1 = x1 - (wImg - wCanvas);
-  y1 = y1 - (hImg - hCanvas);
+  x1 = 826;
+  y1 = 337;
+
+  //x1 = (x1 + x2) / 2;
+  //x1 = x1 - (wImg - wCanvas);
+  //y1 = y1 - (hImg - hCanvas);
   //y1 = (y1 + y3) / 2;
-  console.log(x1);
+  //console.log(x1);
 
   //Imagen antigua
   var urlA = document.getElementById("outputImg2");
-  var ruta = monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["imagen"];
+  var ruta = dataGet.objects[0].imagen_antigua;
   urlA.src = ruta;
 
   //Texto de informacion
-  var descripcion = monumentosQuito[data.responses[0].landmarkAnnotations[0].mid]["descripcion"]
+  var descripcion = dataGet.objects[0].descripcion_monumento;
   $("#descripcion").text(descripcion);
 
 }
